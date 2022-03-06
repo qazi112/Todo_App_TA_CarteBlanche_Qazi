@@ -45,12 +45,14 @@ class Task(db.Model):
     
 # ============================================================================
 
+# ROUTES
 
-# Routes 
+# HomePage 
 @app.route("/")
 def main():
     return render_template('login.html')
 
+# Index Page (USER Dashboard)
 @app.route("/index")
 def index():
     if 'username' not in session:
@@ -69,8 +71,6 @@ def index():
             print("Error Occured")    
   
     return render_template("index.html", results = results, todo_id = todo.id )
-
-
 
 
 # Signup Route
