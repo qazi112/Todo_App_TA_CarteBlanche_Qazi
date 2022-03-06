@@ -4,6 +4,7 @@ from flask import render_template, url_for, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask import request
 from helpers.data_cleaner import valid_pass
+from sqlalchemy import case
 
 # Initialize Flask App
 app = Flask(__name__)
@@ -63,7 +64,11 @@ def index():
             username = session["username"].lower()
             user = User.query.filter_by(username=username).first()
             todo = Todo.query.filter_by(user_id=user.id).first()
-            results = Task.query.filter_by(todo_id=todo.id).all()
+            
+            order = {'low' : 3, 'medium' : 2, "high" : 1}
+            sort_logic = case(value=Task.priority, whens=order).label("priority")
+            results = Task.query.filter_by(todo_id=todo.id).order_by(sort_logic).all()
+            
             print(results)
             return render_template("index.html", results = results, todo_id = todo.id ) 
                   
