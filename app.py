@@ -148,15 +148,18 @@ def login():
         password = request.form["password"].lower()
         
         res = User.query.filter_by(username=username).first()
-        print(res)
+
         if res is None:
             return redirect(url_for('login'))
 
         if valid_pass(res.password, password ):
             session["username"] = username
             session["login"] = True
-
-        return redirect(url_for("index"))
+            return redirect(url_for("index"))
+        else:
+            print("Invalid Password")
+            
+    return redirect(url_for("login"))
         
 @app.route("/logout")
 def logout():
