@@ -4,16 +4,11 @@ Bechelors in Computer Science (Graduating Year)
 Project Title : Todo Application (Technical Assessment)
 Submitted to : CarteBlanche (Recruitment)
 
-<!-- ========================================================= -->
-""" 
     Framework: Flask 
     Front End : HTML, CSS, Bootstrap
     Backend : Python
     Database : SQLITE3 with ORM (SQLAlchemy)
 
-"""
-
-"""
     Database Schema:
 
     Three Tables,
@@ -27,17 +22,12 @@ Submitted to : CarteBlanche (Recruitment)
         - User (id, username, email, password)
         - Todo (id, user_id[fk], backref[user])
         - Task (id, title, label, priority, todo_id[fk], backref[todo])
-"""
 
-"""
     To Use This Application,
         - Create Virtual Environment (Python 3.8.5)
         - Install the required packages/Libraries in requirement.txt file
         - python app.run
 
-"""
-
-""" 
     Login Page Route : ...address/login
     Signup Page Route : ...address/signup
     Logout Page Route : ...address/logout
@@ -45,18 +35,12 @@ Submitted to : CarteBlanche (Recruitment)
 
     etc....
 
-"""
 
-"""
     - app.py (is the main file)
     - static (contains static content) 
     - templates (contains all HTML files)
     - helpers (Contains few helper functions)
 
-"""
 
-
-"""
     - Developed this Project in a hurry, it Needs Refactoring :)
 
-"""
