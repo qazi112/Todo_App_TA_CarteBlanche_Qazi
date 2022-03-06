@@ -1,0 +1,33 @@
+body{
+    background-color: #E5E5E5;
+  
+}
+.login {
+
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+    background-color: #ffffff;
+
+}
+
+.center {
+    position: absolute;
+    top: 10%;
+    
+  }
+
+.main_back{
+    background-color: #0B4B36;
+    
+}
+.main_color{
+    color: #0B4B36;
+
+}
+
+.block-style{
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+    border-radius: 4px;
+
+}

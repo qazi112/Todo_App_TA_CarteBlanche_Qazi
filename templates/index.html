@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block head %} {% endblock %}
+
+{% block body %} 
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                width="50px" height="50px" class="mx-2">
+                CarteBlanche    
+        </a>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+        </li>
+        
+        </ul>
+    </nav>
+    <div class="m-auto mt-4 p-3" style="max-width: 80%;">
+      
+        <div class="row mt-4 mb-4">
+
+            <div class="col-8 font-weight-bold">
+                <h4 class="main_color" style="font-weight: 600; font-family:Verdana">Welcome To Your Todo List</h4>
+            </div>
+
+            <div class="col-4 text-right">
+                <a class="btn main_back text-white" href="{{ url_for('create_task', todo_id = todo_id) }}">Create Task</a>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col">
+                <table class="table table-striped border">
+                    <thead>
+                        <th>Title</th>
+                        <th>Label</th>
+                        <th>Priority</th>
+                    </thead>
+                    <tbody>
+                    {% if results %}
+                  
+                        {% for x in results %}
+                            <tr class="my-3">
+                                <td>{{ x["title"] }}</td>
+                                <td>{{ x["label"] }}</td>
+                                <td>{{ x["priority"] }}</td>
+                                <td class="text-right"><a href='{{url_for("delete_task", task_id=x["id"])}}' class="btn btn-danger">Delete</a></td>
+                                <td><a href='{{ url_for("update_task", task_id= x["id"]) }}' class="btn btn-info">Update</a></td>
+                                <td></td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

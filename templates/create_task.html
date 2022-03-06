@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% block head %} {% endblock %}
+
+{% block body %} 
+
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark p-3">
+        <a class="navbar-brand" href="#">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" 
+                width="50px" height="50px" class="mx-2">
+                CarteBlanche    
+        </a>
+        <ul class="navbar-nav ml-auto">
+        <li class="nav-item active">
+            <a class="nav-link" href="{{ url_for('logout') }}">Sign Out</a>
+        </li>
+        
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="row mt-4 justify-content-center">
+            <div class="col border block-style" style="max-width: 50%;">
+                <div class="px-3 m-3">
+                    
+                    <form action="{{url_for('create_task', todo_id=todo_id)}}" class="signin-form" method="POST">
+                        <div class="form-group mt-3 mb-4">
+                            <label class="form-control-placeholder main_color font-weight-bold" for="title">Title</label>
+                            <input type="text" class="form-control"  placeholder="Title"  name="title" required>
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-control-placeholder main_color font-weight-bold" for="password">Priorty</label><br>
+                            <select name="priority" class="mb-3 custom-select">
+                                <option value="HIGH" selected>High</option>
+                                <option value="MEDIUM">Medium</option>
+                                <option value="LOW">Low</option>
+                            </select>
+                            
+                        </div>
+                        <div class="form-group mt-3 mb-4">
+                            <label class="form-control-placeholder main_color font-weight-bold" for="title">Labels</label>
+                            <div class="row">
+                                <div class="col-10">
+                                    <input type="text" class="form-control" placeholder="Labels" id="label-data"  name="label" data-role="tagsinput" >
+                                </div>
+                                <!-- <div class="col-2 text-right">    
+                                    <button id="add-label" class="btn rounded main_back text-white">Add</button>
+                                </div>
+                                <span id="tags" style="display: none;"></span> -->
+                            </div>
+                        </div>
+
+                        <div class="form-group my-4 ">
+                            <button type="submit" class="form-control btn rounded px-3 main_back text-white">
+                                Create Task
+                            </button>
+                        </div>
+                       
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.getElementById("add-label").addEventListener('click', ()=>{
+        console.log(document.getElementById("label-data").value);
+    })
+</script>
+{% endblock %}

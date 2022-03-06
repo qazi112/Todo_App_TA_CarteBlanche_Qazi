@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block head %} {% endblock %}
+
+{% block body %}
+
+<div class="container ">
+
+    <div class="row justify-content-center ">
+        <div class="col-md-3 col-lg-3 border center login m-auto">
+           
+                <div class="p-4 p-md-5">
+                    <div class="row d-flex justify-content-center text-center">
+                        <div class="col-4 ">
+                                <svg height="70">
+                                    <rect width="70" height="50" style="fill:#0B4B36" />
+                                </svg>
+                        </div>
+                    </div>
+                 
+                    <form action="{{ url_for('login') }}" class="signin-form" method="POST">
+                        <div class="form-group mt-3 mb-4">
+                            <label class="form-control-placeholder main_color font-weight-bold" for="username">Username</label>
+                            <input type="text" class="form-control"  placeholder="Username"  name="username" required>
+                            
+                        </div>
+                        <div class="form-group mb-4">
+                            <label class="form-control-placeholder main_color font-weight-bold" for="password">Password</label>
+                            <input id="password-field" type="password" class="form-control" name="password" placeholder="Password"  required>
+                            
+                        </div>
+                        <div class="form-group mb-4 ">
+                            <button type="submit" class="form-control btn rounded submit px-3 main_back text-white">Sign
+                                In</button>
+                        </div>
+                       
+                    </form>
+                   
+                </div>
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}
