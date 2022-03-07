@@ -6,6 +6,15 @@
 <div class="container ">
 
     <div class="row justify-content-center ">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <span class="mt-4 text-danger font-weight-bold">
+                   <h4>
+                    {{messages[0]}}
+                   </h4> 
+                </span>
+            {% endif %}
+        {% endwith %}
         <div class="col-md-3 col-lg-3 border center login m-auto">
            
                 <div class="p-4 p-md-5">

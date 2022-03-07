@@ -1,4 +1,4 @@
-
+# Imports
 from flask import Flask
 from flask import render_template, url_for, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
@@ -15,7 +15,6 @@ app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 # SQLALCHEMY (SQLITE3)
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///user_database.db"
 db = SQLAlchemy(app)
-
 
 # Models [Database Tables]
 class User(db.Model):
@@ -51,20 +50,23 @@ class Task(db.Model):
 # HomePage 
 @app.route("/")
 def main():
-    return render_template('login.html')
+    return redirect(url_for('login'))
 
 # Index Page (USER Dashboard)
 @app.route("/index")
 def index():
     if 'username' not in session:
+        flash("Login First!!")
         return redirect(url_for('login'))
     else:
         results = None
         try:
+            # Get the Logged IN User 
             username = session["username"].lower()
             user = User.query.filter_by(username=username).first()
+            # Get the respective Todo 
             todo = Todo.query.filter_by(user_id=user.id).first()
-            
+            # Order By Logic
             order = {'low' : 3, 'medium' : 2, "high" : 1}
             sort_logic = case(value=Task.priority, whens=order).label("priority")
             results = Task.query.filter_by(todo_id=todo.id).order_by(sort_logic).all()
@@ -73,6 +75,7 @@ def index():
             return render_template("index.html", results = results, todo_id = todo.id ) 
                   
         except:
+            flash("Error Occured in Query!")
             print("Error Occured")    
   
     return render_template("index.html", results = results, todo_id = todo.id )
@@ -121,11 +124,13 @@ def signup():
                 return redirect(url_for('index'))
                 
             else:
+                flash("Passwords Don't Match!!")
                 return redirect(url_for("signup"))
         
         # User exits
         else:
             # User Exists..!!
+            flash("Can't Create The User!")
             return redirect(url_for("signup"))
              
     return render_template('signup.html')
@@ -146,12 +151,12 @@ def login():
     elif request.method == "POST":
         username = request.form["username"].lower()
         password = request.form["password"].lower()
-        
+        # Query DB and get the user
         res = User.query.filter_by(username=username).first()
-
+        
         if res is None:
             return redirect(url_for('login'))
-
+        print(res.username)
         if valid_pass(res.password, password ):
             session["username"] = username
             session["login"] = True
