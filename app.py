@@ -184,8 +184,8 @@ def create_task(todo_id):
     if request.method == "POST":
         title = request.form["title"].title()
         priority = request.form["priority"].lower()
-        label =  request.form["label"].lower()
-        
+        label =  request.form["final-labels"].lower()
+        print(label)
         todo = Todo.query.filter_by(id=todo_id).first()
     
         task = Task(title=title, priority=priority, label=label, todo=todo, todo_id=todo_id)

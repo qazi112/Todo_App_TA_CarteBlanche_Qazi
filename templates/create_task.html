@@ -43,10 +43,17 @@
                                 <div class="col-10">
                                     <input type="text" class="form-control" placeholder="Labels" id="label-data"  name="label" data-role="tagsinput" >
                                 </div>
-                                <!-- <div class="col-2 text-right">    
-                                    <button id="add-label" class="btn rounded main_back text-white">Add</button>
+                                <div class="col-2 text-right">    
+                                    <button id="add-label" class="btn rounded main_back text-white" type="button">Add</button>
                                 </div>
-                                <span id="tags" style="display: none;"></span> -->
+                                
+                            </div>
+                            <div class="row my-4">
+                                <div class="col">
+                                    <label class="form-control-placeholder main_color font-weight-bold" for="Tags">Tags</label>
+                                    <input type="text" class="form-control" id="final-labels" name="final-labels" style="display: none;">
+                                </div>
+                                
                             </div>
                         </div>
 
@@ -64,8 +71,24 @@
     
 </div>
 <script>
-    document.getElementById("add-label").addEventListener('click', ()=>{
-        console.log(document.getElementById("label-data").value);
+
+    document.addEventListener("DOMContentLoaded", (event)=>{
+
+        var btn = document.getElementById("add-label");
+        var label_input = document.getElementById("label-data");
+        var span_labels = document.getElementById("final-labels");
+
+        btn.addEventListener("click", ()=>{
+        
+            value = label_input.value;
+            label_input.value = null;
+            span_labels.style.display = "block";
+            
+            if (span_labels.value != ""){
+                span_labels.value += ", ";
+            }
+            span_labels.value += value
+        })
     })
 </script>
 {% endblock %}

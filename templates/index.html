@@ -42,7 +42,7 @@
                         {% for x in results %}
                             <tr class="my-3">
                                 <td>{{ x["title"] }}</td>
-                                <td>{{ x["label"] }}</td>
+                                <td >{{ x["label"] }}</td>
                                 <td>{{ x["priority"] }}</td>
                                 <td class="text-right"><a href='{{url_for("delete_task", task_id=x["id"])}}' class="btn btn-danger">Delete</a></td>
                                 <td><a href='{{ url_for("update_task", task_id= x["id"]) }}' class="btn btn-info">Update</a></td>
